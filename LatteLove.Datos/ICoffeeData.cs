@@ -13,6 +13,7 @@ namespace LatteLove.Datos
         IEnumerable<Coffee> GetCoffeeByName(string name);
         Coffee GetById(int Id);
         Coffee Update(Coffee updateCoffee);
+        Coffee Add(Coffee newCoffee);
         int Commit();
     }
 
@@ -34,6 +35,13 @@ namespace LatteLove.Datos
                 new Coffee{Id=8, Location="Balibago, Pampanga", Name = "Coffee Artisan", Coffees=CoffeeType.Mocha, Price=2.20},
                 new Coffee{Id=9, Location="Porac, Pampanga", Name = "Coffee Artisan", Coffees=CoffeeType.Ristretto, Price=3.99}
             };
+        }
+
+        public Coffee Add(Coffee newCoffee)
+        {
+            coffee.Add(newCoffee);
+            newCoffee.Id = coffee.Max(r => r.Id) + 1;
+            return newCoffee;
         }
 
         public int Commit()

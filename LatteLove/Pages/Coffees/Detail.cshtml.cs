@@ -12,6 +12,9 @@ namespace LatteLove.Pages.Coffees
     public class DetailModel : PageModel
     {
         private readonly ICoffeeData coffeedata;
+
+        [TempData]
+        public string Message { get; set; }
         public DetailModel(ICoffeeData coffeedata)
         {
             this.coffeedata = coffeedata;

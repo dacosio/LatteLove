@@ -25,11 +25,18 @@ namespace LatteLove.Pages.Coffees
 
         [BindProperty]
         public Coffee Coffee { get; set; }
-        public IActionResult OnGet(int Id)
+        public IActionResult OnGet(int? Id)
         {
             CoffeeTypes = htmlHelper.GetEnumSelectList<CoffeeType>();
 
-            Coffee = coffeeData.GetById(Id);
+            if (Id.HasValue)
+            {
+                Coffee = coffeeData.GetById(Id.Value);
+            }
+            else
+            {
+                Coffee = new Coffee();
+            }
             if (Coffee == null)
             {
                 return RedirectToPage("NotFound");
@@ -41,12 +48,23 @@ namespace LatteLove.Pages.Coffees
         {
             if (!ModelState.IsValid)
             {
+                CoffeeTypes = htmlHelper.GetEnumSelectList<CoffeeType>();
                 return Page();
             }
-            CoffeeTypes = htmlHelper.GetEnumSelectList<CoffeeType>();
+
+            if (Coffee.Id > 0)
+            {
+                coffeeData.Update(Coffee);
+            }
+            else
+            {
+                coffeeData.Add(Coffee);
+            }
+
             coffeeData.Update(Coffee);
             coffeeData.Commit();
-            return RedirectToPage("CoffeeList");
+            TempData["Message"] = "Coffee Shop Saved";
+            return RedirectToPage("Detail", new { Id = Coffee.Id });
         }
 
         
