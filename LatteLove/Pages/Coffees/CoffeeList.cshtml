@@ -1,0 +1,69 @@
+﻿@page
+@model LatteLove.Pages.Coffees.CoffeeListModel
+@{
+    ViewData["Title"] = "CoffeeList";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Enjoy a cup of coffee</h1>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" value="" asp-for="SearchName" />
+            <span class="input-group-btn">
+                <button class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                </button>
+
+            </span>
+        </div>
+    </div>
+</form>
+
+<table class="table table-hover">
+    @if (Model.Coffee.Count() == 0)
+    {
+        <p>No Shop Found. Please search again.</p>
+    }
+    else
+    {
+        <tr>
+            <th>
+                Shop
+            </th>
+            <th>
+                Menu
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Options
+            </th>
+        </tr>
+        @foreach (var coffee in Model.Coffee)
+        {
+            <tr>
+                <td>
+                    @coffee.Name
+                </td>
+                <td>
+                    @coffee.Coffees
+                </td>
+                <td>
+                    @coffee.Price
+                </td>
+                <td>
+                    <a class="btn btn-md" asp-page="Detail" asp-route-id="@coffee.Id">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a class="btn btn-md" asp-page="Edit" asp-route-id="@coffee.Id">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+

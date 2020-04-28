@@ -1,0 +1,33 @@
+﻿@page "{Id:int}"
+@model LatteLove.Pages.Coffees.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Coffee.Name</h2>
+<div>
+    Id: @Model.Coffee.Id
+</div>
+<div>
+    Location: @Model.Coffee.Location
+</div>
+<div>
+    @switch (Model.Coffee.Name)
+    {
+        case "Starbucks":
+            <div>Serving: @Model.Coffee.Coffees</div>
+            break;
+        case "Coffee Bean & Tea Leaf":
+            <div>Serving: @Model.Coffee.Coffees</div>
+            break;
+        case "Coffee Artisan":
+            <div>Serving: @Model.Coffee.Coffees</div>
+            break;
+        default:
+            <div>Nothing to serve for now.</div>
+            break;
+    }
+</div>
+
+<a asp-page="CoffeeList" class="btn btn-success">All Coffee Shops</a>

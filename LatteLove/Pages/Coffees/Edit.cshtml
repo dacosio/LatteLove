@@ -1,0 +1,34 @@
+﻿@page "{Id:int}"
+@model LatteLove.Pages.Coffees.EditModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Editing @Model.Coffee.Name</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Coffee.Id" />
+
+    <div class="form-group">
+        <label asp-for="Coffee.Name"></label>
+        <input asp-for="Coffee.Name" class="form-control" />
+        <span asp-validation-for="Coffee.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Coffee.Location"></label>
+        <input asp-for="Coffee.Location" class="form-control" />
+        <span asp-validation-for="Coffee.Location" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Coffee.Coffees"></label>
+        <select asp-for="Coffee.Coffees" class="form-control" asp-items="Model.CoffeeTypes">
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
