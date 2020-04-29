@@ -6,9 +6,12 @@ using LatteLove.Datos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace LatteLove
 {
@@ -24,7 +27,13 @@ namespace LatteLove
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContextPool<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("LatteLoveDb"));
+            });
+
             services.AddSingleton<ICoffeeData, InMemoryCoffeeData>();
+
             services.AddRazorPages();
             services.AddMvc();
         }
