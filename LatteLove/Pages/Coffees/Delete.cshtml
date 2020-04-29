@@ -1,0 +1,15 @@
+﻿@page  "{Id:int?}"
+@model LatteLove.Pages.Coffees.DeleteModel
+@{
+
+}
+
+    <h2>Delete!</h2>
+    <div class="alert alert-danger">
+        Are you sure you want to delete @Model.Coffee.Name?
+    </div>
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a asp-page="CoffeeList" class="btn btn-primary">Cancel</a>
+    </form>
+

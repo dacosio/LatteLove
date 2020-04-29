@@ -63,6 +63,11 @@ namespace LatteLove.Datos
                    select c;
         }
 
+        public int GetCountOfCoffee()
+        {
+            return coffee.Count();
+        }
+
         public Coffee Update(Coffee updateCoffee)
         {
             var kape = coffee.SingleOrDefault(r => r.Id == updateCoffee.Id);

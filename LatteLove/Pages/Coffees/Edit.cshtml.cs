@@ -13,7 +13,7 @@ namespace LatteLove.Pages.Coffees
     public class EditModel : PageModel
     {
         private readonly ICoffeeData coffeeData;
-        private readonly IHtmlHelper htmlHelper;
+        private readonly IHtmlHelper htmlHelper; //this is for asp-item
 
         public EditModel(ICoffeeData coffeeData, IHtmlHelper htmlHelper)
         {
@@ -21,7 +21,7 @@ namespace LatteLove.Pages.Coffees
             this.htmlHelper = htmlHelper;
         }
 
-        public IEnumerable<SelectListItem> CoffeeTypes { get; set; }
+        public IEnumerable<SelectListItem> CoffeeTypes { get; set; } //this is for asp-item
 
         [BindProperty]
         public Coffee Coffee { get; set; }
@@ -37,10 +37,12 @@ namespace LatteLove.Pages.Coffees
             {
                 Coffee = new Coffee();
             }
+
             if (Coffee == null)
             {
                 return RedirectToPage("NotFound");
             }
+
             return Page();
         }
         
@@ -61,7 +63,6 @@ namespace LatteLove.Pages.Coffees
                 coffeeData.Add(Coffee);
             }
 
-            coffeeData.Update(Coffee);
             coffeeData.Commit();
             TempData["Message"] = "Coffee Shop Saved";
             return RedirectToPage("Detail", new { Id = Coffee.Id });

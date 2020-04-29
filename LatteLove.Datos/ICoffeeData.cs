@@ -13,6 +13,7 @@ namespace LatteLove.Datos
         Coffee Add(Coffee newCoffee);
         Coffee Delete(int Id);
         int Commit();
+        int GetCountOfCoffee();
     }
 }
 

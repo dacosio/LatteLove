@@ -50,12 +50,16 @@ namespace LatteLove.Datos
             return query;
         }
 
+        public int GetCountOfCoffee()
+        {
+            return db.Coffee.Count();
+        }
+
         public Coffee Update(Coffee updateCoffee)
         {
             var entity = db.Coffee.Attach(updateCoffee);
             entity.State = EntityState.Modified;
-
-            return updateCoffee; ;
+            return updateCoffee;
         }
     }
 }

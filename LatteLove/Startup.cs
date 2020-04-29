@@ -32,7 +32,8 @@ namespace LatteLove
                 options.UseSqlServer(Configuration.GetConnectionString("LatteLoveDb"));
             });
 
-            services.AddSingleton<ICoffeeData, InMemoryCoffeeData>();
+            services.AddScoped<ICoffeeData, SqlCoffeeData>();
+            //services.AddSingleton<ICoffeeData, InMemoryCoffeeData>(); commente out since we are now using sql server instead of in memory data
 
             services.AddRazorPages();
             services.AddMvc();

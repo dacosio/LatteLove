@@ -17,4 +17,8 @@
     <ProjectReference Include="..\LatteLove.Datos\LatteLove.Datos.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\CoffeeScaffold\" />
+  </ItemGroup>
+
 </Project>

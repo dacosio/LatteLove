@@ -22,6 +22,12 @@
 
     </div>
     <div class="form-group">
+        <label asp-for="Coffee.Price"></label>
+            <input asp-for="Coffee.Price" class="form-control" />
+        <span asp-validation-for="Coffee.Price" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
         <label asp-for="Coffee.Coffees"></label>
             <select asp-for="Coffee.Coffees" class="form-control" asp-items="Model.CoffeeTypes">
         </select>

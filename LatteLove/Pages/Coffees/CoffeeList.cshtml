@@ -1,7 +1,7 @@
 ﻿@page
 @model LatteLove.Pages.Coffees.CoffeeListModel
 @{
-    ViewData["Title"] = "CoffeeList";
+    ViewData["Title"] = "Coffee";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
@@ -21,51 +21,10 @@
     </div>
 </form>
 
-<table class="table table-hover">
-    @if (Model.Coffee.Count() == 0)
-    {
-        <p>No Shop Found. Please search again.</p>
-    }
-    else
-    {
-        <tr>
-            <th>
-                Shop
-            </th>
-            <th>
-                Menu
-            </th>
-            <th>
-                Price
-            </th>
-            <th>
-                Options
-            </th>
-        </tr>
-        @foreach (var coffee in Model.Coffee)
-        {
-            <tr>
-                <td>
-                    @coffee.Name
-                </td>
-                <td>
-                    @coffee.Coffees
-                </td>
-                <td>
-                    @coffee.Price
-                </td>
-                <td>
-                    <a class="btn btn-md" asp-page="Detail" asp-route-id="@coffee.Id">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                    <a class="btn btn-md" asp-page="Edit" asp-route-id="@coffee.Id">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                </td>
-            </tr>
-        }
-    }
-</table>
+@foreach (var coffee in Model.Coffee)
+	{
+		 <partial name="_Summary" model="coffee"/>
+	}
 
 <a asp-page="Edit" class="btn btn-primary">Add New</a>
 
