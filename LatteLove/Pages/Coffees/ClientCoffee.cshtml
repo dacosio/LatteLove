@@ -6,3 +6,38 @@
 
 <h1>ClientCoffee</h1>
 
+<table id="coffee" class="table">
+
+</table>
+
+
+@section Scripts {
+
+    <environment include="Developement">
+        <script src="~\node_modules\datatables.net\js\jquery.dataTables.js"></script>
+        <script src="~\node_modules\datatables.net-bs4\js\dataTables.bootstrap4.js"></script>
+        <link href="~\node_modules\datatables.net-bs4\css\dataTables.bootstrap4.css" rel="stylesheet" />
+    </environment>
+
+    <environment exclude="Development">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+    </environment>
+
+    <script>
+        $(function () {
+
+            $.ajax("/api/coffee/",
+                { method: "get" })
+                .then(function (response) {
+                    $("#coffee").dataTable({
+                        data: response,
+                        columns: [
+                            { "data": "name" },
+                            { "data": "location" }
+                        ]
+                    });
+                });
+        })
+    </script>
+}

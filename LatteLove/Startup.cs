@@ -36,7 +36,8 @@ namespace LatteLove
             //services.AddSingleton<ICoffeeData, InMemoryCoffeeData>(); commente out since we are now using sql server instead of in memory data
 
             services.AddRazorPages();
-            services.AddMvc();
+            services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +56,8 @@ namespace LatteLove
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseNodeModules();
+            app.UseCookiePolicy();
 
             app.UseRouting();
 
@@ -62,8 +65,10 @@ namespace LatteLove
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
+
         }
     }
 }

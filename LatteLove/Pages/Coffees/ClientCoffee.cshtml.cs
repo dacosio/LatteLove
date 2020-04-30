@@ -9,9 +9,6 @@ namespace LatteLove.Pages.Coffees
 {
     public class ClientCoffeeModel : PageModel
     {
-        public void OnGet()
-        {
-
-        }
+        
     }
 }
